@@ -1,0 +1,49 @@
+( https://docs.docker.com/get-started/swarm-deploy/)
+
+Here you will use same folder/project which we use in (Docker images and container of this
+
+file)
+
+Make sure that Swarm is enabled on your Docker Desktop by typing docker system info,
+
+and looking for a message Swarm: active(you might have to scroll up a little).
+
+If Swarm isn’t running, simply type docker swarm initin a shell prompt to set it up.
+
+Describe apps using stack files
+
+Let’s write a simple stack file to run and manage our bulletin board. Place the following in a
+
+filecalled bb-stack.yaml
+
+version: '3.7'
+
+services:bb-app:
+
+image: bulletinboard:1.0ports:
+
+- "8000:8080"
+
+Deploy and check your application
+
+1. Deploy your application to
+
+docker stack deploy -c bb-stack.yaml demo
+
+If all goes well, Swarm will report creating all your stack objects with no complaints:
+
+2.Make sure everything worked by listing your service
+
+1. docker service ls
+
+2) If all has gone well, your service will report with 1/1 of its replicas created:
+
+1. Open a browser and visit your bulletin board at localhost:8000; you should see
+
+your bulletin board, the same as when we ran it as a stand-alone container in
+
+Docker imagesand containersection of this file.
+
+2. Once satisfied, tear down your
+
+applicationdocker stack rm demo
